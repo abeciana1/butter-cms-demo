@@ -23,10 +23,12 @@ export const generateMetadata = async (
     const resolvedSearchParams = await searchParams;
     const headersList = await headers()
     const path = headersList.get("x-pathname")
+    const subDir = headersList.get("x-subdir")
+    const pageType = subDir ? pageTypeLookup[subDir] : '*'
     const isPreview =
     (typeof resolvedSearchParams?.preview === 'string' &&
     resolvedSearchParams.preview === '1') ? 'preview=1' : ''
-    const pageData = await getPageData(isPreview, path as string)
+    const pageData = await getPageData(isPreview as string, path as string, pageType as string)
     const {
         seo
     } = (pageData?.data?.fields ?? {}) as PageFields

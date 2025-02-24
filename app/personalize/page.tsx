@@ -22,28 +22,28 @@ const PersonalizePage = () => {
 
     const setABTestingCookie = (version: string) => {
         if (version === 'a') {
-            if (Cookies.get('version-b')) {
+            if (Cookies.get('version-b') === 'true') {
                 Cookies.remove('version-b')
-                setDeveloperPersona(false)
+                setVersionB(false)
             }
-            if (Cookies.get('version-a')) {
+            if (Cookies.get('version-a') === 'true') {
                 Cookies.remove('version-a')
-                setMarketerPersona(false)
+                setVersionA(false)
             } else {
                 Cookies.set('version-a', 'true', { expires: 1 })
-                setMarketerPersona(true)
+                setVersionA(true)
             }
         } else {
-            if (Cookies.get('marketer')) {
-                Cookies.remove('marketer')
-                setMarketerPersona(false)
+            if (Cookies.get('version-a') === 'true') {
+                Cookies.remove('version-a')
+                setVersionA(false)
             }
-            if (Cookies.get('version-b')) {
+            if (Cookies.get('version-b') === 'true') {
                 Cookies.remove('version-b')
-                setDeveloperPersona(false)
+                setVersionB(false)
             } else {
                 Cookies.set('version-b', 'true', { expires: 1 })
-                setDeveloperPersona(true)
+                setVersionB(true)
             }
         }
     }
@@ -132,12 +132,12 @@ const PersonalizePage = () => {
                         <OnClickButton
                             buttonText={`${versionA ? 'Disable' : 'Enable'} Version A homepage`}
                             color={versionA ? 'Red' : 'Green'}
-                            onClick={() => setABTestingCookie('a')}
+                            onClick={() => setABTestingCookie('true')}
                         />
                         <OnClickButton
                             buttonText={`${versionB ? 'Disable' : 'Enable'} Version B homepage`}
                             color={versionB ? 'Red' : 'Green'}
-                            onClick={() => setABTestingCookie('b')}
+                            onClick={() => setABTestingCookie('true')}
                         />
                     </div>
                 </section>

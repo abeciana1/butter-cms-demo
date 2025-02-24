@@ -1,4 +1,3 @@
-import { use } from 'react'
 import { getPageData } from '@/lib/butter'
 import { headers, cookies } from 'next/headers';
 import type { Metadata } from 'next'

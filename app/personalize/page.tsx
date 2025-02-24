@@ -1,14 +1,20 @@
 'use client'
-import { useState } from 'react'
+
+import { useState, useEffect } from 'react'
 import Cookies from 'js-cookie'
 import { PageMarginWrapper } from '@/components/_layouts'
 import OnClickButton from '@/components/_styled/OnClickButton'
 
 const PersonalizePage = () => {
-    const [ marketerPersona, setMarketerPersona ] = useState(Cookies.get('marketer') ? true : false)
-    const [ developerPersona, setDeveloperPersona ] = useState(Cookies.get('developer') ? true : false)
-    console.log('Marketer cookies', Cookies.get('marketer'))
-    console.log('Developer cookies', Cookies.get('developer'))
+    const [marketerPersona, setMarketerPersona] = useState(false)
+    const [developerPersona, setDeveloperPersona] = useState(false)
+    const [isClient, setIsClient] = useState(false)
+
+    useEffect(() => {
+        setIsClient(true)
+        setMarketerPersona(Cookies.get('marketer') === 'true')
+        setDeveloperPersona(Cookies.get('developer') === 'true')
+    }, [])
 
     const setPersonaCookie = (persona: string) => {
         if (persona === 'marketer') {
@@ -39,27 +45,38 @@ const PersonalizePage = () => {
     }
 
     return (
-        <>
+        <section className='px-10'>
             <PageMarginWrapper>
                 <h1>Personalization content powered by Butter</h1>
-                <div>You are currently using {(!marketerPersona && !developerPersona) ? <b>no</b> : 'the '}{marketerPersona && <b>Marketer</b>}{developerPersona && <b>Developer</b>} persona</div>
+                <div>
+                    You are currently using{' '}
+                    {!isClient || (!marketerPersona && !developerPersona) ? (
+                        <b>no</b>
+                    ) : (
+                        <>
+                            {marketerPersona && <b>Marketer</b>}
+                            {developerPersona && <b>Developer</b>}
+                        </>
+                    )}{' '}
+                    persona
+                </div>
                 <section className='py-10'>
                     <h2>Personalization on a user level</h2>
                     <div className='space-y-5 max-w-fit'>
                         <OnClickButton
                             buttonText={`${marketerPersona ? 'Disable' : 'Enable'} Marketer persona`}
-                            color={marketerPersona ? 'Red': 'Green'}
+                            color={marketerPersona ? 'Red' : 'Green'}
                             onClick={() => setPersonaCookie('marketer')}
                         />
                         <OnClickButton
                             buttonText={`${developerPersona ? 'Disable' : 'Enable'} Developer persona`}
-                            color={developerPersona ? 'Red': 'Green'}
+                            color={developerPersona ? 'Red' : 'Green'}
                             onClick={() => setPersonaCookie('developer')}
                         />
                     </div>
                 </section>
             </PageMarginWrapper>
-        </>
+        </section>
     )
 }
 

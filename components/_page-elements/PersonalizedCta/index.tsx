@@ -37,7 +37,7 @@ const {
     const renderWhiteTextColor = background_color?.color === ColorE.SECONDARY || background_color?.color === ColorE.DARKGREY || background_color?.color === ColorE.PRIMARY
     return (
         <section
-            className={cx('my-4 mx-10 p-8 rounded-md flex items-center gap-12',{
+            className={cx('my-32 mx-10 p-8 rounded-md flex items-center gap-12',{
                 ['bg-secondary']: background_color?.color === ColorE.SECONDARY,
                 ['bg-background']: background_color?.color === ColorE.BACKGROUND,
                 ['bg-shades-silver']: background_color?.color === ColorE.SILVER,

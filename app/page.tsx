@@ -1,6 +1,6 @@
 import { use } from 'react'
 import { getPageData } from '@/lib/butter'
-import { headers } from 'next/headers';
+import { headers, cookies } from 'next/headers';
 import type { Metadata } from 'next'
 import ComponentRenderer from '@/components/ComponentRender'
 import { PageMarginWrapper } from '@/components/_layouts'
@@ -35,11 +35,13 @@ export const generateMetadata = async (
   }
 }
 
-export default function Home() {
-  const headersList = use(headers());
+export default async function Home() {
+  const headersList = await headers()
   const isPreview = headersList.get("x-search-param")
   const path = headersList.get("x-pathname")
-  const pageContent = use(getPageData(isPreview as string, path as string))
+  const cookieStore = await cookies()
+  const abTestCookie = cookieStore?.get('version-a')?.value === 'true' ? 'a' : 'b'
+  const pageContent = await getPageData(isPreview as string, path as string, abTestCookie)
   const {
     body
   } = pageContent?.data?.fields as any

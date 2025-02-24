@@ -1,5 +1,4 @@
 'use client'
-
 import { useState, useEffect } from 'react'
 import Cookies from 'js-cookie'
 import { PageMarginWrapper } from '@/components/_layouts'
@@ -132,12 +131,12 @@ const PersonalizePage = () => {
                         <OnClickButton
                             buttonText={`${versionA ? 'Disable' : 'Enable'} Version A homepage`}
                             color={versionA ? 'Red' : 'Green'}
-                            onClick={() => setABTestingCookie('true')}
+                            onClick={() => setABTestingCookie('a')}
                         />
                         <OnClickButton
                             buttonText={`${versionB ? 'Disable' : 'Enable'} Version B homepage`}
                             color={versionB ? 'Red' : 'Green'}
-                            onClick={() => setABTestingCookie('true')}
+                            onClick={() => setABTestingCookie('b')}
                         />
                     </div>
                 </section>

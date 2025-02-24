@@ -17,7 +17,7 @@ export const generateMetadata = async (
   const pageData = await getPageData(isPreview, path as string)
   const {
     seo
-  } = pageData?.data?.fields as any
+  } = pageData as any
   return {
     title: seo?.title,
     description: seo?.description,
@@ -39,11 +39,12 @@ export default async function Home() {
   const isPreview = headersList.get("x-search-param")
   const path = headersList.get("x-pathname")
   const cookieStore = await cookies()
-  const abTestCookie = cookieStore?.get('version-a')?.value === 'true' ? 'a' : 'b'
-  const pageContent = await getPageData(isPreview as string, path as string, abTestCookie)
+  const abTestCookie = (!cookieStore?.get('version-a') && !cookieStore?.get('version-a')) ? 'a' : (cookieStore?.get('version-a')?.value === 'true' ? 'a' : 'b')
+  const pageContent = await getPageData(isPreview as string, path as string, '*', abTestCookie)
   const {
     body
-  } = pageContent?.data?.fields as any
+  } = pageContent as any
+  console.log('body,', body)
   return (
     <main>
       <PageMarginWrapper>

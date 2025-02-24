@@ -58,3 +58,7 @@ export interface OnClickButtonI {
     color: string;
     onClick: () => void;
 }
+
+export interface PersonalizedCtaI {
+    cookieTarget: string;
+}

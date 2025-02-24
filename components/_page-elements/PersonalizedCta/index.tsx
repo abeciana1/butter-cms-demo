@@ -23,7 +23,7 @@ if (cookiePresent) {
     }
 }
 
-if (!ctaData) return null; // Prevent rendering if no data
+if (!ctaData) return null;
 
 const {
     cta_title = "Default Title",

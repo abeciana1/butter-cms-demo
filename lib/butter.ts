@@ -39,7 +39,7 @@ export const getPageData = (isPreview: string, slug: string, pageType = '*', abT
     "fields.version": abTestCookie
   } as any)
   .then(function(resp) {
-      return resp.data
+      return resp.data?.data?.fields
   })
   .catch(function(resp) {
       console.log('resp', resp)

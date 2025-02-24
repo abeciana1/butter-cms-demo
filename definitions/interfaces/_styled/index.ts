@@ -52,3 +52,9 @@ export interface BlogCtaI {
     ctaLink: string;
     ctaColor: ButterColor;
 }
+
+export interface OnClickButtonI {
+    buttonText: string;
+    color: string;
+    onClick: () => void;
+}

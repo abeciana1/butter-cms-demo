@@ -39,12 +39,13 @@ export default async function Home() {
   const isPreview = headersList.get("x-search-param")
   const path = headersList.get("x-pathname")
   const cookieStore = await cookies()
-  const abTestCookie = (!cookieStore?.get('version-a') && !cookieStore?.get('version-a')) ? 'a' : (cookieStore?.get('version-a')?.value === 'true' ? 'a' : 'b')
+  const abTestCookie = (!cookieStore?.get('version-a') && !cookieStore?.get('version-b')) ? 'a' : (cookieStore?.get('version-a')?.value === 'true' ? 'a' : 'b')
+  console.log('abTestCookie', abTestCookie)
+  console.log('cookieStore')
   const pageContent = await getPageData(isPreview as string, path as string, '*', abTestCookie)
   const {
     body
   } = pageContent as any
-  console.log('body,', body)
   return (
     <main>
       <PageMarginWrapper>

@@ -31,7 +31,7 @@ export const generateMetadata = async (
     const pageData = await getPageData(isPreview as string, path as string, pageType as string)
     const {
         seo
-    } = (pageData?.data?.fields ?? {}) as PageFields
+    } = (pageData ?? {}) as PageFields
     if (!seo) {
         return {
             title: "Default Title",
@@ -73,7 +73,7 @@ export default function DynamicPage() {
     const {
         sidebar,
         body
-    } = (pageContent?.data?.fields ?? {}) as PageFields
+    } = (pageContent ?? {}) as PageFields
     const hasSidebar = Array?.isArray(sidebar) && sidebar?.length > 0;
     const hasBody = Array?.isArray(body) && body?.length > 0;
     return (

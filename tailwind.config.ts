@@ -22,7 +22,7 @@ export default {
         primary: '#0077B6',
         secondary: '#061A40',
         accent: {
-          1: '#FFC857'
+          1: '#FCD602'
         },
         shades: {
           silver: '#ADADAD',

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import ComponentRenderer from '@/components/ComponentRender'
 import { PageMarginWrapper } from '@/components/_layouts'
-import { headers, cookies } from 'next/headers';
+import { headers } from 'next/headers';
 import cx from 'classnames'
 import { getPageData, pageTypeLookup } from '@/lib/butter'
 import { PageProps } from '@/definitions/interfaces/general'

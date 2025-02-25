@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 import ComponentRenderer from '@/components/ComponentRender'
 import { PageMarginWrapper } from '@/components/_layouts'
-import { headers } from 'next/headers';
-import { use } from 'react'
+import { headers, cookies } from 'next/headers';
 import cx from 'classnames'
 import { getPageData, pageTypeLookup } from '@/lib/butter'
 import { PageProps } from '@/definitions/interfaces/general'
@@ -63,13 +62,13 @@ export const generateMetadata = async (
     };
 }
 
-export default function DynamicPage() {
-    const headersList = use(headers());
+export default async function DynamicPage() {
+    const headersList = await headers()
     const isPreview = headersList.get("x-search-param")
     const path = headersList.get("x-pathname")
     const subDir = headersList.get("x-subdir")
     const pageType = subDir ? pageTypeLookup[subDir] : '*'
-    const pageContent = use(getPageData(isPreview as string, path as string, pageType as string))
+    const pageContent = await getPageData(isPreview as string, path as string, pageType as string)
     const {
         sidebar,
         body

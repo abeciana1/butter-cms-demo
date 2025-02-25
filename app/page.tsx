@@ -11,10 +11,12 @@ export const generateMetadata = async (
   const resolvedSearchParams = await searchParams;
   const headersList = await headers()
   const path = headersList.get("x-pathname")
+  const cookieStore = await cookies()
+  const abTestCookie = (!cookieStore?.get('version-a') && !cookieStore?.get('version-b')) ? 'a' : (cookieStore?.get('version-a')?.value === 'true' ? 'a' : 'b')
   const isPreview =
     (typeof resolvedSearchParams?.preview === 'string' &&
     resolvedSearchParams.preview === '1') ? 'preview=1' : ''
-  const pageData = await getPageData(isPreview, path as string)
+  const pageData = await getPageData(isPreview as string, path as string, '*', abTestCookie)
   const {
     seo
   } = pageData as any

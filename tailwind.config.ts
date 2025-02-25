@@ -20,7 +20,7 @@ export default {
         background: '#F8F9FA',
         foreground: '#333333',
         primary: '#0077B6',
-        secondary: '#061A40',
+        secondary: '#233266',
         accent: {
           1: '#FCD602'
         },

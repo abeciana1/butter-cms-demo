@@ -27,7 +27,7 @@ export const generateMetadata = async (
     const isPreview =
     (typeof resolvedSearchParams?.preview === 'string' &&
     resolvedSearchParams.preview === '1') ? 'preview=1' : ''
-    const pageData = await getPageData(isPreview as string, path as string, pageType as string)
+    const pageData = await getPageData(isPreview as string, path as string, pageType as string, '')
     const {
         seo
     } = (pageData ?? {}) as PageFields
@@ -68,7 +68,7 @@ export default async function DynamicPage() {
     const path = headersList.get("x-pathname")
     const subDir = headersList.get("x-subdir")
     const pageType = subDir ? pageTypeLookup[subDir] : '*'
-    const pageContent = await getPageData(isPreview as string, path as string, pageType as string)
+    const pageContent = await getPageData(isPreview as string, path as string, pageType as string, '')
     const {
         sidebar,
         body

@@ -15,6 +15,7 @@ export const Heading1: React.FC<HeadingI> = ({
                 ['text-shades-silver']: color === ColorE.SILVER,
                 ['text-shades-darkGrey']: color === ColorE.DARKGREY,
                 ['text-primary']: color === ColorE.PRIMARY,
+                ['text-accent-1']: color === ColorE.ACCENT_1,
                 ['font-light']: fontWeight === FontWeightE.LIGHT,
                 ['font-medium']: fontWeight === FontWeightE.MEDIUM,
                 ['font-normal']: fontWeight === FontWeightE.NORMAL,

@@ -30,7 +30,7 @@ export const getNavMenu = (isPreview: string, modelName: string, slug: string) =
     });
 }
 
-export const getPageData = (isPreview: string, slug: string, pageType = '*', abTestCookie: 'a' | 'b' = 'a') => {
+export const getPageData = (isPreview: string, slug: string, pageType = '*', abTestCookie: 'a' | 'b' | '' = 'a') => {
   const page = slug === '/' ? `homepage-${abTestCookie}` : slug.split('/')[slug.split('/')?.length - 1]
   return butter.page.retrieve(pageType, page, {
     preview: isPreview === 'preview=1' ? 1 : 0,

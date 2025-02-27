@@ -15,7 +15,7 @@ const BlogCta: React.FC<BlogCtaI> = ({
     const renderWhiteTextColor = backgroundColor?.color === ColorE.SECONDARY || backgroundColor?.color === ColorE.DARKGREY || backgroundColor?.color === ColorE.PRIMARY
     return (
         <section
-            className={cx('my-4 p-8 rounded-md flex items-center gap-12',{
+            className={cx('my-4 p-8 rounded-md flex items-center gap-12 max-w-fit mx-auto',{
                 ['bg-secondary']: backgroundColor?.color === ColorE.SECONDARY,
                 ['bg-background']: backgroundColor?.color === ColorE.BACKGROUND,
                 ['bg-shades-silver']: backgroundColor?.color === ColorE.SILVER,
